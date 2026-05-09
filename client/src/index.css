@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    @apply min-h-screen;
+  }
+
+  body {
+    @apply bg-cream-warm text-charcoal font-sans antialiased;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+}
