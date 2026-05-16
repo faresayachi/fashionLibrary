@@ -29,7 +29,7 @@ export function setupAxiosInterceptors({ getAccessToken, getRefreshToken, saveAc
       const originalRequest = error?.config;
       const status = error?.response?.status;
 
-      if (status !== 401 || !originalRequest || originalRequest._retry) {
+      if (status !== 401 || !originalRequest || originalRequest._retry || originalRequest._skipRefresh) {
         return Promise.reject(error);
       }
 

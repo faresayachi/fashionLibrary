@@ -10,14 +10,11 @@ export function setAccessToken(token) {
   accessToken = token;
 }
 
-axiosInstance.interceptors.request.use(
-  (config) => {
-    if (accessToken) {
-      config.headers.Authorization = `Bearer ${accessToken}`;
-    }
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
+const SERVER_BASE = (import.meta.env.VITE_API_URL ?? '').replace(/\/api\/?$/, '');
+export function getAssetUrl(path) {
+  if (!path) return null;
+  if (path.startsWith('http')) return path;
+  return `${SERVER_BASE}${path}`;
+}
 
 export default axiosInstance;

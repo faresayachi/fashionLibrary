@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { getAssetUrl } from '../services/axiosInstance';
 
 const FALLBACK_COVER =
   'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop';
@@ -8,7 +9,7 @@ export default function ReportCard({ report }) {
     <article className="group relative overflow-hidden rounded-2xl bg-charcoal/10 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl">
       <div className="relative aspect-[3/4]">
         <img
-          src={report?.coverImage || FALLBACK_COVER}
+          src={getAssetUrl(report?.coverImage) || FALLBACK_COVER}
           alt={report?.title}
           className="h-full w-full object-cover"
         />

@@ -9,7 +9,7 @@ export function loginRequest(payload) {
 }
 
 export function refreshRequest(refreshToken) {
-  return axiosInstance.post('/auth/refresh', { refreshToken });
+  return axiosInstance.post('/auth/refresh', { refreshToken }, { _skipRefresh: true });
 }
 
 export function logoutRequest() {

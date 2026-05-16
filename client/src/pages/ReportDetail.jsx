@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getReportById } from '../services/reportService';
+import { getAssetUrl } from '../services/axiosInstance';
 
 const FALLBACK_COVER =
   'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop';
@@ -46,7 +47,7 @@ export default function ReportDetail() {
     <main className="bg-cream-warm pt-24">
       <section className="mx-auto grid max-w-6xl gap-10 px-6 py-12 md:grid-cols-[360px_1fr] md:px-10">
         <img
-          src={report.coverImage || FALLBACK_COVER}
+          src={getAssetUrl(report.coverImage) || FALLBACK_COVER}
           alt={report.title}
           className="aspect-[3/4] w-full rounded-2xl object-cover shadow-xl"
         />

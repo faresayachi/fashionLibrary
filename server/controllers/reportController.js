@@ -1,6 +1,10 @@
 const Report = require("../models/Report");
 const User = require("../models/User");
 
+function escapeRegex(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 const getAllReports = async (req, res) => {
   try {
     const page = Number(req.query.page) > 0 ? Number(req.query.page) : 1;
@@ -10,9 +14,10 @@ const getAllReports = async (req, res) => {
     const query = {};
 
     if (req.query.search) {
+      const safe = escapeRegex(req.query.search);
       query.$or = [
-        { title: { $regex: req.query.search, $options: "i" } },
-        { author: { $regex: req.query.search, $options: "i" } }
+        { title: { $regex: safe, $options: "i" } },
+        { author: { $regex: safe, $options: "i" } }
       ];
     }
 

@@ -54,7 +54,7 @@ export default function EditReport() {
 
   const onChange = (event) => {
     const { name, value, files } = event.target;
-    setForm((prev) => ({ ...prev, [name]: files ? files[0] : value }));
+    setForm((prev) => ({ ...prev, [name]: files && files.length > 0 ? files[0] : value }));
   };
 
   const onSubmit = async (event) => {
